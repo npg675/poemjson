@@ -1,124 +1,392 @@
-[
-  {
-    "id": 1,
-    "title": "मात्र एकपल",
-    "author": "लेखक अज्ञात",
-    "lines": [
-      "मात्र एकपलको साथ चाहियो,",
-      "जीवन बदल्न सक्ने विश्वास चाहियो।",
-      "सपना साँचिन मन लाग्छ,",
-      "अझै केही गर्न बाँकी छ।"
-    ]
-  },
-  {
-    "id": 2,
-    "title": "पहाडको मन",
-    "author": "कविता गुरुङ",
-    "lines": [
-      "पहाडले भने मलाई, चिच्याएर बोल,",
-      "मेरो काखमा लुकेका छन् भावना खोल।",
-      "म मौन छु, तर गहिरो छु,",
-      "मेरो शिरमाथि आकाश छ।"
-    ]
-  },
-  {
-    "id": 3,
-    "title": "बिर्सन सकिन",
-    "author": "शिव खनाल",
-    "lines": [
-      "बिर्सन खोजें तिमीलाई, सम्झनाको खोलो बग्यो।",
-      "अनायासै तिम्रो हासोले, मेरो मन भरियो।",
-      "नभन अब तिमी छैनौ,",
-      "तिमी मेरो कविता हौ।"
-    ]
-  },
-  {
-    "id": 4,
-    "title": "शान्ति",
-    "author": "मनोज अधिकारी",
-    "lines": [
-      "हातमा फूल लिएर हिंड,",
-      "हातमा हतियार होइन।",
-      "शब्दमा माया पोख,",
-      "घृणालाई बिर्सिदेऊ।"
-    ]
-  },
-  {
-    "id": 5,
-    "title": "झरना",
-    "author": "सिता कँडेल",
-    "lines": [
-      "पानीको झरनाझैं छ मेरो मन,",
-      "अविरल बगिरहेछ बिना थाक।",
-      "कसैले सम्हाल्न खोजे पनि,",
-      "स्वतन्त्र छ यो, जस्तै हावा।"
-    ]
-  },
-  {
-    "id": 6,
-    "title": "घाम",
-    "author": "सागर न्यौपाने",
-    "lines": [
-      "घाम झुल्कियो आज फेरि,",
-      "सपना बोकेर आयो उज्याली।",
-      "हिजोका आँसु पोख्दै,",
-      "भोलिका आशा बनाउँदै।"
-    ]
-  },
-  {
-    "id": 7,
-    "title": "माया",
-    "author": "बिजय दाहाल",
-    "lines": [
-      "माया भन्नु नाम हो,",
-      "नदेखिने तर गहिरो भाव हो।",
-      "नजोडिएको देखिए पनि,",
-      "मनमा गाँसिएको नाता हो।"
-    ]
-  },
-  {
-    "id": 8,
-    "title": "सपनाको पाखा",
-    "author": "अनु शर्मा",
-    "lines": [
-      "सपनाको पाखा उड्दै छु म,",
-      "सत्यको खोजीमा टाढा पुग्दै।",
-      "थाक्दिन म कहिल्यै,",
-      "किनभने विश्वास अझै बाँकी छ।"
-    ]
-  },
-  {
-    "id": 9,
-    "title": "हावाको गीत",
-    "author": "लेखक अज्ञात",
-    "lines": [
-      "हावा गुञ्जन्छ कानमा,",
-      "भनिरहेछ गुनासो कतैको।",
-      "उसको गति जस्तै,",
-      "मन पनि अडिन्छ कहाँ।"
-    ]
-  },
-  {
-    "id": 10,
-    "title": "रातको सन्देश",
-    "author": "राजन कार्की",
-    "lines": [
-      "रात आएपछि तिमी सम्झिन्छौ,",
-      "तारा हेरिरहन्छौ अध्यारोमा।",
-      "शान्त छ सबैकुरा,",
-      "तर मनमा आवाज घन्किन्छ।"
-    ]
-  },
-  {
-  "id": 11,
-  "title": "कर्म",
-  "author": "रमेश थापा",
-  "lines": [
-    "कर्म गर, फलको आशा नगर,",
-    "इमानदारीताले बढाउँछ आधार।",
-    "बिउ रोप, बिउँझिन्छ जीवन,",
-    "सत्यको बाटो कहिल्यै हेरुँ न।"
-  ]
+import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(const PoemApp());
 }
 
-]
+class PoemApp extends StatelessWidget {
+  const PoemApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Nepali Poem App',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        fontFamily: 'Roboto',
+        scaffoldBackgroundColor: Colors.grey[100],
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white, // Ensure app bar title is visible
+        ),
+        useMaterial3: false, // Maintain previous Material 2 look if not specified
+      ),
+      home: const MainPage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = const [
+    HomePage(),
+    PoemPage(),
+    AboutPage(),
+    PrivacyPolicyPage(),
+  ];
+
+  final List<String> _pageTitles = const [
+    'Home',
+    'Poems',
+    'About',
+    'Privacy Policy',
+  ];
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final List<BottomNavigationBarItem> _bottomItems = const [
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+    BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Poems'),
+    BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
+    BottomNavigationBarItem(icon: Icon(Icons.privacy_tip), label: 'Privacy'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(_pageTitles[_selectedIndex]),
+            const Text(
+              'Developed by Tech Naresh',
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.white70,
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        items: _bottomItems,
+        selectedItemColor: Colors.deepPurple,
+        unselectedItemColor: Colors.grey,
+        onTap: _onTabTapped,
+        type: BottomNavigationBarType.fixed,
+      ),
+    );
+  }
+}
+
+// -------------------- Poem Data Model --------------------
+class Poem {
+  final String title;
+  final String author;
+  final List<String> lines;
+
+  Poem({required this.title, required this.author, required this.lines});
+
+  factory Poem.fromJson(Map<String, dynamic> json) {
+    return Poem(
+      title: json['title'] as String,
+      author: json['author'] as String,
+      lines: (json['lines'] as List<dynamic>).map<String>((dynamic e) => e.toString()).toList(),
+    );
+  }
+}
+
+// -------------------- Home Page --------------------
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.auto_stories_rounded, size: 80, color: Theme.of(context).primaryColor),
+            const SizedBox(height: 20),
+            const Text(
+              'Welcome to Nepali Poem App',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Read beautiful Nepali poems to inspire your soul.',
+              style: TextStyle(fontSize: 16),
+              textAlign: TextAlign.center,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// -------------------- Poem Page (List of Headings) --------------------
+
+class PoemPage extends StatefulWidget {
+  const PoemPage({super.key});
+
+  @override
+  _PoemPageState createState() => _PoemPageState();
+}
+
+class _PoemPageState extends State<PoemPage> {
+  List<Poem> poems = <Poem>[];
+  bool isLoading = true;
+  String? errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPoems();
+  }
+
+  Future<void> _fetchPoems() async {
+    try {
+      final http.Response response = await http.get(Uri.parse('https://npg675.github.io/poemjson/poem.json'));
+
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonList = json.decode(response.body);
+        setState(() {
+          poems = jsonList.map<Poem>((dynamic item) => Poem.fromJson(item as Map<String, dynamic>)).toList();
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          errorMessage = 'Failed to load poems. Status code: ${response.statusCode}';
+          isLoading = false;
+        });
+        throw Exception('Failed to load poems');
+      }
+    } catch (e) {
+      setState(() {
+        errorMessage = 'Error fetching data: $e';
+        isLoading = false;
+      });
+      // ignore: avoid_print
+      print('Error fetching poems: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (errorMessage != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            errorMessage!,
+            style: const TextStyle(color: Colors.red, fontSize: 16),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: poems.length,
+      itemBuilder: (BuildContext context, int index) {
+        final Poem poem = poems[index];
+        return Card(
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          elevation: 4,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          child: ListTile(
+            title: Text(
+              poem.title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+            ),
+            subtitle: Text(
+              "By: ${poem.author}",
+              style: TextStyle(color: Colors.grey[700], fontStyle: FontStyle.italic),
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => PoemDetailPage(poem: poem),
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+// -------------------- Poem Detail Page --------------------
+
+class PoemDetailPage extends StatelessWidget {
+  final Poem poem;
+
+  const PoemDetailPage({super.key, required this.poem});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(poem.title),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: <Color>[
+              Colors.deepPurple.shade50,
+              Colors.purple.shade100,
+              Colors.deepPurple.shade50,
+            ],
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                poem.title,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "By: ${poem.author}",
+                style: TextStyle(fontSize: 16, color: Colors.grey[800], fontStyle: FontStyle.italic),
+              ),
+              const SizedBox(height: 20),
+              // Iterate through poem lines, providing a subtle background for each line
+              ...poem.lines.map<Widget>((String line) => Container(
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Text(
+                      line,
+                      style: TextStyle(fontSize: 16, color: Colors.grey[850]),
+                      textAlign: TextAlign.start,
+                    ),
+                  )).toList(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// -------------------- About Page --------------------
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        children: <Widget>[
+          Icon(Icons.info_outline, size: 80, color: Theme.of(context).primaryColor),
+          const SizedBox(height: 20),
+          const Text(
+            'About This App',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'This app showcases hand-picked Nepali poems fetched from an online source. '
+            'The purpose of this app is to preserve and promote the beauty of Nepali literature in the digital world.',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.justify,
+          ),
+          const SizedBox(height: 20),
+          Divider(color: Colors.grey[300]),
+          const SizedBox(height: 10),
+          const Text(
+            'App Version 1.0',
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey),
+            textAlign: TextAlign.center,
+          ),
+          const Text(
+            'Published: 2025',
+            style: TextStyle(fontSize: 14, color: Colors.grey),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// -------------------- Privacy Policy Page --------------------
+
+class PrivacyPolicyPage extends StatelessWidget {
+  const PrivacyPolicyPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        children: <Widget>[
+          Icon(Icons.lock_outline, size: 80, color: Theme.of(context).primaryColor),
+          const SizedBox(height: 20),
+          const Text(
+            'Privacy Policy',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'We respect your privacy. This app does not collect or store any personal data. '
+            'Poems are loaded from a public online source and no tracking is implemented. '
+            'Enjoy the app freely and safely.',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.justify,
+          )
+        ],
+      ),
+    );
+  }
+}
